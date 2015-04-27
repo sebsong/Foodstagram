@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.5'
 gem 'rails', '4.1.6'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -12,6 +12,7 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
+gem "paperclip", "~> 4.2"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
