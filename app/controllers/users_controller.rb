@@ -11,5 +11,14 @@ class UsersController < ApplicationController
       redirect_to :back, :alert => "Access denied."
     end
   end
-
+  def create
+    @user = User.create( user_params )
+  end
+  
+  private
+    # Be sure to update your create() and update() controller methods.
+  
+  def user_params
+    params.require(:user).permit(:avatar)
+  end
 end
