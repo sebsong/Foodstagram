@@ -1,5 +1,13 @@
 <h1> <%= link_to 'Foodstagram', root_path %> </h1>
-<h3>User</h3>
+<h2>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 <%= button_to "New Post", new_post_path, :class => "button large", :method => :get if @user == current_user %>
+
+<h2> <%= "Posts" if Post.where(user_id:@user.id).length > 0 %> </h3>
+<% Post.where(user_id:@user.id).each do |p| %>
+    <div style="background-color: #D3D3D3">
+        <h3> <%= p.title %> </h3>
+        <p><%= p.caption %></p>
+    </div>
+<% end %>
