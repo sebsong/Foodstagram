@@ -1,5 +1,9 @@
+<h1> <%= link_to "Foodstagram", root_path %> </h1>
 <h1>Liven Up Your Foodstagram!</h1>
 <%= simple_form_for @post do |f| %>
+    <p>Add a title!</p>
+    <%= f.text_field :title %>
+    <p>Add a caption!</p>
     <%= f.text_field :caption %>
     <%= f.button :submit %>
 <% end %>
