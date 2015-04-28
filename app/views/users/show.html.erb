@@ -1,11 +1,5 @@
+<h1> <%= link_to 'Foodstagram', root_path %> </h1>
 <h3>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
-  <p>
-      <%= form.file_field :avatar %>
-  </p>
-  <p>
-      <%= form.submit "Post" %>
-  </p>
-<% end %>
+<%= button_to "New Post", new_post_path, :class => "button large", :method => :get if @user == current_user %>
