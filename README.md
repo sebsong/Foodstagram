@@ -1,50 +1,33 @@
-Rails Devise
-================
+Title: Foodstagram
+Team Members: Sebastian Song,  Solah Yoo
+Demo Link: https://foodstagram.herokuapp.com/
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Idea: An application similar to Instagram but focused on food related posts. Users can post pictures along with a title and caption. Posts can be commented on, and each User has his/her own profile with their own posts.
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+Models and Description:
+    -User
+        -has name, email, many posts and many comments
+    -Posts
+        -has title, caption, many comments
+        -belongs to User
+    -Comments
+        -has message
+        -belongs to User and posts
+Features:
+    -Users can log in
+    -Main feed
+    -Profile/User specific feed
+        -Can view other users’ pictures by clicking on their names or emails
+    -Users can post pictures of food
+    -Users can comment on pictures
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.2
-- Rails 4.1.6
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Division of Labor:
+    Sebastian
+        -Implemented basic feed
+        -Implemented basic commenting
+        -Styled views
+    Solah
+        -Added timestamps to all the posts and comments
+        -Added Paperclip to Posts
+        -Made views
+        -Did some styling with Bootstrap
