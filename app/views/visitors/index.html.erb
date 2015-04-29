@@ -3,6 +3,7 @@
     <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
     <% @posts.each do |p| %>
         <h1> <%= p.title %> </h2>
+        <p><%= render p.user %></p>
         <p> <%= p.caption %> </p>
         <%= image_tag p.avatar.url(:large) %>
     <% end %>
