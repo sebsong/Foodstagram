@@ -1,10 +1,11 @@
-<h3>Welcome to Foodstagram!</h3>
+<h1>Welcome to Foodstagram!</h1>
 <% if user_signed_in? %>
     <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
     <% @posts.each do |p| %>
         <h1> <%= p.title %> </h2>
-        <p> <%= p.caption %> </p>
+        <p><%= render p.user %></p>
         <%= image_tag p.avatar.url(:large) %>
+        <p> <%= p.caption %> </p>
     <% end %>
 <% end %>
 <% if user_signed_in? %>
