@@ -4,8 +4,8 @@
     <% @posts.each do |p| %>
         <h1> <%= p.title %> </h2>
         <p><%= render p.user %></p>
-        <p> <%= p.caption %> </p>
         <%= image_tag p.avatar.url(:large) %>
+        <p> <%= p.caption %> </p>
     <% end %>
 <% end %>
 <% if user_signed_in? %>

@@ -8,9 +8,9 @@
 <% Post.where(user_id:@user.id).each do |p| %>
     <div>
         <h3> <%= p.title %> </h3>
-        <p><%= p.caption %></p>
         <p>
             <%= image_tag p.avatar.url(:large) %>
         </p>
+        <p><%= p.caption %></p>
     </div>
 <% end %>
