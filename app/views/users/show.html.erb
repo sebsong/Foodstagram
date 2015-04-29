@@ -9,7 +9,23 @@
     <div>
         <h3> <%= p.title %> </h3>
         <p>
-            <p> Posted on <%= p.created_at.strftime("%b %d, %Y") %></p>
+            <% if Time.now.to_date == p.created_at.to_date %>
+                <% if (Time.now.to_i - p.created_at.to_i) / 60 < 60 %>
+                    <% if (Time.now.to_i - p.created_at.to_i) / 60 == 1 %>
+                        <p> Posted 1 minute ago</p>
+                    <% else %>                    
+                        <p> Posted <%= (Time.now.to_i - p.created_at.to_i) / 60 %> minutes ago</p>
+                    <% end %>
+                <% else %>
+                    <% if (Time.now.to_i - p.created_at.to_i) / 3600 == 1 %>
+                        <p> Posted 1 hour ago</p>
+                    <% else %>                    
+                        <p> Posted <%= (Time.now.to_i - p.created_at.to_i) / 3600 %> minutes ago</p>
+                    <% end %>                        
+                <% end %>
+            <% else %>
+                <p> Posted on <%= p.created_at.strftime("%b %d, %Y") %></p>
+            <% end %>
             <%= image_tag p.avatar.url(:large) %>
         </p>
         <p><%= p.caption %></p>
