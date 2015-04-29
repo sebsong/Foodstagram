@@ -1,0 +1,12 @@
+html {
+    background-image: url("background.jpg");
+}
+
+#title h1 {
+    text-align: center;
+    font-size: 100px;
+}
+ #login_signup {
+     text-align: center;
+     font-size: 50px;
+ }
