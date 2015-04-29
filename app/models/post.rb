@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
       :thumb => "100x100#",
       :small  => "150x150>",
       :medium => "200x200",
-      :large => "1000x1000"}
+      :large => "550x550"}
 	validates_attachment :avatar,
 	    :presence => true,
 	    :size => { :in => 0..10.megabytes },
