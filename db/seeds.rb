@@ -5,10 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+#user = CreateAdminService.new.call
+#puts 'CREATED ADMIN USER: ' << user.email
 
 # Make users
-%w(Ash Gary Misty Brock).each do |name|
-  User.create name: name, email: name+"@foodstagram.com", password: 'password'
-end
+names = User.create([{name: "Ash", email: "ash@foodstagram.com", password: 'password'}, {name: "Gary", email: "gary@foodstagram.com", password: 'password'}])
