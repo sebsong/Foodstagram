@@ -8,15 +8,17 @@ class CommentsController < ApplicationController
     end
     
     def create
-        @user = current_user
-        @comment = Comment.new comment_params
-        @comment.user_id = @user.id
-        @comment.post_id = params[:post_id]
-        if @comment.save
-            redirect_to root_path
-        else
-            flash[:error] = @comment.errors.full_messages.to_sentence
-            render :action => "new"
+        if user_signed_in?
+            @user = current_user
+            @comment = Comment.new comment_params
+            @comment.user_id = @user.id
+            @comment.post_id = params[:post_id]
+            if @comment.save
+                redirect_to root_path
+            else
+                flash[:error] = @comment.errors.full_messages.to_sentence
+                render :action => "new"
+            end
         end
     end
 
