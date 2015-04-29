@@ -9,10 +9,11 @@ class CommentsController < ApplicationController
     
     def create
         @user = current_user
-        #@post = 
-        @comment = Comment.new
+        @comment = Comment.new comment_params
+        @comment.user_id = @user.id
+        @comment.post_id = params[:post_id]
         if @comment.save
-            redirect_to user_path(@user.id)
+            redirect_to root_path
         else
             flash[:error] = @comment.errors.full_messages.to_sentence
             render :action => "new"

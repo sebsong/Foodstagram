@@ -6,6 +6,14 @@
         <p><%= render p.user %></p>
         <%= image_tag p.avatar.url(:large) %>
         <p> <%= p.caption %> </p>
+        <h3>Comment</h3>
+        <% Comment.where(post_id:p.id).each do |c| %>
+            <p> <%= c.message %> </p>
+        <% end %>
+        <%= simple_form_for(@comment, :url => comments_path(@comment, :post_id => p.id)) do |f| %>
+            <%= f.text_field :message %>
+            <%= f.button :submit, "comment" %>
+        <% end %>
     <% end %>
 <% end %>
 <% if user_signed_in? %>
