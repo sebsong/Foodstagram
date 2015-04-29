@@ -9,25 +9,19 @@
     <div>
         <h3> <%= p.title %> </h3>
         <p>
-            <% if Time.now.to_date == p.created_at.to_date %>
-                <% if (Time.now.to_i - p.created_at.to_i) / 60 < 60 %>
-                    <% if (Time.now.to_i - p.created_at.to_i) / 60 == 1 %>
-                        <p> Posted 1 minute ago</p>
-                    <% else %>                    
-                        <p> Posted <%= (Time.now.to_i - p.created_at.to_i) / 60 %> minutes ago</p>
-                    <% end %>
-                <% else %>
-                    <% if (Time.now.to_i - p.created_at.to_i) / 3600 == 1 %>
-                        <p> Posted 1 hour ago</p>
-                    <% else %>                    
-                        <p> Posted <%= (Time.now.to_i - p.created_at.to_i) / 3600 %> minutes ago</p>
-                    <% end %>                        
-                <% end %>
-            <% else %>
-                <p> Posted on <%= p.created_at.strftime("%b %d, %Y") %></p>
-            <% end %>
+            <p> <%= p.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %d, %Y, %l:%M %p") %> </p>
             <%= image_tag p.avatar.url(:large) %>
         </p>
-        <p><%= p.caption %></p>
+        <h3><%= p.caption %></h3>
+        <h5>Comments</h5>
+        <% Comment.where(post_id:p.id).each do |c| %>
+            <p> <%= render User.find(c.user_id)%>: <%= c.message %> </p>
+            <small> <%= c.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %d, %Y, %l:%M %p") %> </small>
+        <% end %>
+        <%= simple_form_for(@comment, :url => comments_path(@comment, :post_id => p.id)) do |f| %>
+            <%= f.text_field :message %>
+            <%= f.button :submit, "comment" %>
+        <% end %>
     </div>
 <% end %>
+

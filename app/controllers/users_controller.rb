@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if user_signed_in?
+        @comment = Comment.new
+        @comment.user_id = current_user.id
+    end
   end
 
   def create

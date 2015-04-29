@@ -22,14 +22,19 @@
 
 <% if user_signed_in? %>
     <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+    <p><%= link_to 'My Profile', user_path(current_user) %> </p>
     <% @posts.each do |p| %>
-        <h1> <%= p.title %> </h2>
+        <h3> <%= p.title %> </h3>
         <p><%= render p.user %></p>
-        <%= image_tag p.avatar.url(:large) %>
-        <p> <%= p.caption %> </p>
-        <h3>Comment</h3>
+        <p>
+            <p> Posted on <%= p.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %d, %Y, %l:%M %p") %> </p>
+            <%= image_tag p.avatar.url(:large) %>
+        </p>
+        <h4><%= p.caption %></h4>
+        <h5>Comments</h5>
         <% Comment.where(post_id:p.id).each do |c| %>
-            <p> <%= render User.find(c.user_id) %>: <%= c.message %> </p>
+            <p> <%= render User.find(c.user_id)%>: <%= c.message %> </p>
+            <small> <%= c.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %d, %Y, %l:%M %p") %> </small>
         <% end %>
         <%= simple_form_for(@comment, :url => comments_path(@comment, :post_id => p.id)) do |f| %>
             <%= f.text_field :message %>
